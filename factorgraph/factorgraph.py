@@ -36,6 +36,7 @@ Notes:
 
 author: mbforbes
 '''
+from __future__ import print_function
 
 # Imports
 # -----------------------------------------------------------------------------
@@ -430,7 +431,7 @@ class Graph(object):
             n.init_lbp()
 
     def print_sorted_nodes(self):
-        print self._sorted_nodes()
+        print(self._sorted_nodes())
 
     def print_messages(self, nodes=None):
         '''
@@ -441,7 +442,7 @@ class Graph(object):
         '''
         if nodes is None:
             nodes = self._sorted_nodes()
-        print 'Current outgoing messages:'
+        print('Current outgoing messages:')
         for n in nodes:
             n.print_messages()
 
@@ -493,19 +494,19 @@ class Graph(object):
         if normalize:
             disp += ' (normalized)'
         disp += ':'
-        print disp
+        print(disp)
 
         # Extract
         tuples = self.rv_marginals(rvs, normalize)
 
         # Display
         for rv, marg in tuples:
-            print str(rv)
+            print(str(rv))
             vals = range(rv.n_opts)
             if len(rv.labels) > 0:
                 vals = rv.labels
             for i in range(len(vals)):
-                print '\t', vals[i], '\t', marg[i]
+                print('\t', vals[i], '\t', marg[i])
 
     def debug_stats(self):
         logger.debug('Graph stats:')
@@ -582,7 +583,7 @@ class RV(object):
         Displays the current outgoing messages for this RV.
         '''
         for i, f in enumerate(self._factors):
-            print '\t', self, '->', f, '\t', self._outgoing[i]
+            print('\t', self, '->', f, '\t', self._outgoing[i])
 
     def recompute_outgoing(self, normalize=False):
         '''
@@ -889,7 +890,7 @@ class Factor(object):
         Displays the current outgoing messages for this Factor.
         '''
         for i, rv in enumerate(self._rvs):
-            print '\t', self, '->', rv, '\t', self._outgoing[i]
+            print('\t', self, '->', rv, '\t', self._outgoing[i])
 
     def attach(self, rv):
         '''
